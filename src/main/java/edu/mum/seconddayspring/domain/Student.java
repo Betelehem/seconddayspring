@@ -1,8 +1,6 @@
 package edu.mum.seconddayspring.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -16,15 +14,30 @@ public class Student {
     String lastName;
 
     Integer age;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="address_id")
+    Address address;
+
+
     public Student(){
 
     }
 
-    public Student(String studentId, String name, String lastName, Integer age) {
+
+    public Student(String studentId, String name, String lastName, Integer age, Address address) {
         this.studentId = studentId;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getStudentId() {
