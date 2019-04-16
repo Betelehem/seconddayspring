@@ -20,6 +20,7 @@
         <td>First Name</td>
         <td>Last Name</td>
         <td>Age</td>
+        <td>Action</td>
     </tr>
     </thead>
     <tbody>
@@ -28,6 +29,8 @@
         <td th:text="${student.name}"></td>
         <td th:text="${student.lastName}"></td>
         <td th:text="${student.age}"></td>
+        <td><a th:href="@{'/update/'+ ${student.studentId}}" class="btn btn-sm btn-info">Update</a>
+            <a th:href="@{'/delete/'+ ${student.studentId}}" class="btn btn-sm btn-info" onclick= "if(!(confirm('Are you sure you want to delete this employee?'))) return false">delete</a></td>
     </tr>
     </tbody>
 </table>

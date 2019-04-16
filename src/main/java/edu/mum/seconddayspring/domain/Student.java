@@ -17,19 +17,30 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
     Address address;
+    @OneToOne//(cascade = CascadeType.ALL)
+    @JoinColumn(name = "gender_id")
+    Gender gender;
 
 
     public Student(){
 
     }
 
-
-    public Student(String studentId, String name, String lastName, Integer age, Address address) {
+    public Student(String studentId, String name, String lastName, Integer age, Address address, Gender gender) {
         this.studentId = studentId;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.address = address;
+        this.gender = gender;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public Address getAddress() {

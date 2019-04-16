@@ -9,16 +9,22 @@
     <title>Create Student</title>
 </head>
 <body>
-<div class="continer">
+<div class="container">
 <form th:action="@{/addStudent}" method="post" th:object="${student}">
+
+    <select th:field="*{gender}" class="form-control mb-4 col-4">
+        <option th:each="gend: ${genders}" th:text="${gend.gender}" th:value="${gend.id}"></option>
+    </select>
+
+    <input type="hidden" th:field="*{address.id}">
     <input type="text" th:field="*{address.street}"  class="form-control mb-4 col-4" placeholder="Street">
     <input type="text" th:field="*{address.city}"  class="form-control mb-4 col-4" placeholder="City">
     <input type="text" th:field="*{address.state}"  class="form-control mb-4 col-4" placeholder="State">
     <input type="text" th:field="*{address.zipCode}"  class="form-control mb-4 col-4" placeholder="ZipCode">
     <input type="text" th:field="*{studentId}"  class="form-control mb-4 col-4" placeholder="Student Id">
-    <input type="text"  th:field="*{name}" class="form-control mb-4 col-4" placeholder="First Name">
-    <input type="text"  th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last Name">
-    <input type="text"  th:field="*{age}" class="form-control mb-4 col-4" placeholder="Age">
+    <input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="First Name">
+    <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last Name">
+    <input type="text" th:field="*{age}" class="form-control mb-4 col-4" placeholder="Age">
     <input type="submit" value="Save" class="btn btn-info col-2">
 
 </form>
