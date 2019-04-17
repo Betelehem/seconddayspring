@@ -1,11 +1,13 @@
 package edu.mum.seconddayspring.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Student {
     @Id
     @Column(name="student_id")
+    @NotEmpty(message = "Student Id can not be empty")
     String studentId;
 
     String name;

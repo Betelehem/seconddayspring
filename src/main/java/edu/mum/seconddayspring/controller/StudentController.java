@@ -6,8 +6,10 @@ import edu.mum.seconddayspring.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -26,9 +28,12 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public String saveStudent(@ModelAttribute("student") Student student){
+    public String saveStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult,Model model){
        Long gendId=student.getGender().getId();
        //student.setGender(studentService.findById(gendId));
+        if(bindingResult.hasErrors()){
+            model.addAttribute("genders", genderService.findAll());
+            return "studentForm";}
         Student savedStudent = studentService.save(student);
        // return "studentResult";
         return "redirect:/studentlist";
